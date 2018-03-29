@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 #ifndef PBS_INCLUDED
@@ -431,7 +433,7 @@ inline half4 LightingStandard (v2f i,half4 c,LightInfo light)
 v2f vert(a2v v) {  
 	v2f o = (v2f)0;  
 	  
-	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos(v.vertex);
 	o.uv = v.texcoord;	
 #ifdef SKINTEX
 	SkinUVMask(o);

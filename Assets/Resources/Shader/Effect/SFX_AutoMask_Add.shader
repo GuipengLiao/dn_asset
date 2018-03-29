@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/SFX_AutoMask_Add" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
@@ -55,7 +57,7 @@ Shader "Custom/Effect/SFX_AutoMask_Add" {
                 o.uv0 = TRANSFORM_TEX(v.texcoord0,_Texture);
 				o.uv1 = lerp(fixed2(o.uv0.x,o.uv0.y+_Time.y*_Mask_VSpeed), fixed2(o.uv0.x+_Time.y*_Mask_USpeed, o.uv0.y), 0.5);
                 o.vertexColor = v.vertexColor.rgb*_Color.rgb*v.vertexColor.a;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
             fixed4 frag(VertexOutput i) : COLOR {

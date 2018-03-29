@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/SFX_AlphaClips" {
     Properties {
         _Color ("Color", Color) = (1,1,1,0.503)
@@ -47,7 +49,7 @@ Shader "Custom/Effect/SFX_AlphaClips" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = TRANSFORM_TEX(v.texcoord0, _Texture);
                 o.vertexColor = v.vertexColor.rgb*_Color.rgb*v.vertexColor.a;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
             fixed4 frag(VertexOutput i) : COLOR {

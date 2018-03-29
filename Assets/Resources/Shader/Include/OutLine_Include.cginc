@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 #ifndef OUTLINE_INCLUDED
@@ -24,7 +26,7 @@ struct v2f {
 fixed4 _OutLineColor;
 v2f vert(a2v v) {  
 	v2f o = (v2f)0;
-	o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);	
+	o.vertex = UnityObjectToClipPos(v.vertex);	
 	o.uv = v.texcoord;
 	half rim = 1.0f;
 #ifdef RIMON

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/UVMoveAdd2" {
     Properties {
 		_Tex ("Main Texture", 2D) = "white" {}
@@ -56,7 +58,7 @@ Shader "Custom/Effect/UVMoveAdd2" {
 
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+				o.pos = UnityObjectToClipPos(v.vertex );
                 o.uv = v.texcoord;
                 o.vc = v.vertexColor*_Color;
                 return o;

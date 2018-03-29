@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
@@ -22,7 +24,7 @@ fixed4 _UIRimMask;
 v2f vert(a2v v) {  
 	v2f o = (v2f)0;  
 	  
-	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos(v.vertex);
 	o.uv = v.texcoord;	
 #ifdef UV2
 	o.uv1 = v.texcoord1;

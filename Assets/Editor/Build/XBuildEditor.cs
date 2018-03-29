@@ -20,8 +20,8 @@ public class XBuildEditor : EditorWindow
 
     static bool isRelease = true;
     static bool isFast = false;
-    
-  
+
+
     void OnGUI()
     {
         if (_init) InitPlatform();
@@ -102,7 +102,7 @@ public class XBuildEditor : EditorWindow
         PlayerSettings.allowedAutorotateToLandscapeRight = true;
         PlayerSettings.allowedAutorotateToPortrait = false;
         PlayerSettings.allowedAutorotateToPortraitUpsideDown = false;
-        PlayerSettings.bundleIdentifier = _identifier;
+        PlayerSettings.applicationIdentifier = _identifier;
         PlayerSettings.bundleVersion = _version;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
@@ -148,7 +148,7 @@ public class XBuildEditor : EditorWindow
         _targetDir = Path.Combine(Application.dataPath.Replace("/Assets", ""), "Android");
         int bundleVersionCode = int.Parse(System.DateTime.Now.ToString("yyMMdd"));
         PlayerSettings.Android.bundleVersionCode = bundleVersionCode;
-        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel14;
+        PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel16;
         PlayerSettings.Android.targetDevice = AndroidTargetDevice.FAT;
         PlayerSettings.Android.preferredInstallLocation = AndroidPreferredInstallLocation.Auto;
         PlayerSettings.Android.forceSDCardPermission = true;
@@ -191,8 +191,8 @@ public class XBuildEditor : EditorWindow
         EditorUtility.DisplayDialog("Package Build Finish", "Package Build Finish!(" + res + ")", "OK");
         HelperEditor.Open(_targetDir);
     }
-    
-    
+
+
     private static string[] FindEnabledEditorScenes()
     {
         List<string> EditorScenes = new List<string>();

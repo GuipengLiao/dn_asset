@@ -1,4 +1,6 @@
-﻿Shader "Custom/Scene/Fade" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Scene/Fade" {
 Properties {
 	_MainTex ("Main Texture", 2D) = "white" {}
 	_Fade("Fade", Range (0.0, 1.0)) = 0.2
@@ -35,7 +37,7 @@ Category {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				return o;
 			}

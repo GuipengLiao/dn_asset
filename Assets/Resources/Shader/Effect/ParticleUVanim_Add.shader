@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/ParticleUVanim_Add" {
     Properties {
         _U_Time ("U_Time", Float ) = 1
@@ -40,7 +42,7 @@ Shader "Custom/Effect/ParticleUVanim_Add" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = TRANSFORM_TEX(v.texcoord0, _Min_Textures);
 				o.uv0 = o.uv0 + half2(_Time.y*_U_Time, _Time.y*_V_Time);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 o.color = v.color;
                 return o;
             }

@@ -1,4 +1,6 @@
-﻿Shader "Hidden/MobileDOFPro"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Hidden/MobileDOFPro"
 { 
 	Properties
 	{ 
@@ -38,7 +40,7 @@ SubShader {
 		v2f_img vert_img_aa(appdata_img v)
 		{
 			v2f_img o;
-			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos(v.vertex);
 			o.uv = v.texcoord;
 
 			#if UNITY_UV_STARTS_AT_TOP

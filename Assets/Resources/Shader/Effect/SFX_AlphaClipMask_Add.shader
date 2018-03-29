@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/SFX_AlphaClipMask_Add" {
     Properties {
         _Main_Color ("Mian_Color", Color) = (1,1,1,1)
@@ -77,7 +79,7 @@ Shader "Custom/Effect/SFX_AlphaClipMask_Add" {
                 o.uv1 = lerp(float2(v.texcoord0.x, v.texcoord0.y + _Time.y*_Mask_VSpeed), float2(v.texcoord0.x + _Time.y*_Mask_USpeed, v.texcoord0.y), 0.5);
 				o.uv1 = TRANSFORM_TEX(o.uv1, _Mask_Tex);
                 o.color = v.color.rgb*_Main_Color.rgb*v.color.a*_Main_Color.a;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
 

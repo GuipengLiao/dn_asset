@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
 
 Shader "Custom/Projector/RectAdd" {
 Properties {
@@ -40,7 +42,7 @@ Category {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				half4 shadowUV = mul(unity_Projector, v.vertex);
 				o.uv = shadowUV.xy - half2(0.5,0.5);
 				return o;

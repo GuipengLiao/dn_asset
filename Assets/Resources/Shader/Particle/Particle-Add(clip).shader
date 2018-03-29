@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Simplified Additive Particle shader. Differences from regular Additive Particle one:
 // - no Tint color
 // - no Smooth particle support
@@ -44,7 +46,7 @@ Shader "Custom/Particles/AdditiveClip" {
 					v2f vert(appdata_t v)
 					{
 						v2f o;
-						o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+						o.vertex = UnityObjectToClipPos(v.vertex);
 						o.color = v.color;
 						o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
 						o.pos.xy = o.vertex.xy;

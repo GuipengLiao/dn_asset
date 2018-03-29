@@ -1,4 +1,6 @@
-﻿Shader "Custom/Effect/CombineTex" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Effect/CombineTex" {
 	Properties{
 		_Tex0("Tex0 (RGB)", 2D) = "black" {}
 		_Tex1("Tex0 (RGB)", 2D) = "black" {}
@@ -45,7 +47,7 @@
 		{
 			v2f o = (v2f)0;
 
-			o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.vertex = UnityObjectToClipPos(v.vertex);
 			o.uv = v.texcoord;
 			return o;
 		}

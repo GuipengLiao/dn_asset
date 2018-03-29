@@ -1,4 +1,6 @@
-﻿Shader "Custom/Scene/CutoutFadeLM" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Scene/CutoutFadeLM" {
 Properties {
 _Color ("Main Color", Color) = (1, 1, 1, 1)
 	_MainTex ("Main Texture", 2D) = "white" {}
@@ -37,7 +39,7 @@ Category {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				return o;
 			}

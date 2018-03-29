@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/SFX_IceMaterial" {
     Properties {
         _Main_Color ("Main_Color", Color) = (1,1,1,1)
@@ -70,7 +72,7 @@ Shader "Custom/Effect/SFX_IceMaterial" {
 				o.uv2 = lerp(float2(0.5*_Time.y*_SFX_U +v.texcoord0.x, v.texcoord0.y), float2(v.texcoord0.x, 0.5*_Time.y*_SFX_V + v.texcoord0.y), 0.5);
 				o.uv2 = TRANSFORM_TEX(o.uv2, _Spec_Tex);
 				o.vertexColor = v.vertexColor*_Main_Color.rgb;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
 

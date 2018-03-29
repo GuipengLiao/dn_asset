@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Simplified Diffuse shader. Differences from regular Diffuse one:
 // - no Main Color
 // - fully supports only 1 directional light. Other lights can affect it, but it will be per-vertex/SH.
@@ -52,7 +54,7 @@ Pass {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
 				o.uvBump = TRANSFORM_TEX(v.texcoord1,_BumpTex);
 				o.view= normalize( WorldSpaceViewDir( v.vertex)) ;

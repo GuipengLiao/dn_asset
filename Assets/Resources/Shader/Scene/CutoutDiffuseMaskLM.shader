@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: commented out 'float4 unity_LightmapST', a built-in variable
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: commented out 'float4 unity_LightmapST', a built-in variable
 // Upgrade NOTE: commented out 'sampler2D unity_Lightmap', a built-in variable
 // Upgrade NOTE: replaced tex2D unity_Lightmap with UNITY_SAMPLE_TEX2D
 
@@ -41,7 +43,7 @@ SubShader {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
 				UNITY_TRANSFER_FOG(o, o.vertex);
 				return o;
@@ -89,7 +91,7 @@ SubShader {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				o.uv2.xy = v.uv2.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 				UNITY_TRANSFER_FOG(o, o.vertex);
@@ -141,7 +143,7 @@ SubShader {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				o.uv2.xy = v.uv2.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 				UNITY_TRANSFER_FOG(o, o.vertex);

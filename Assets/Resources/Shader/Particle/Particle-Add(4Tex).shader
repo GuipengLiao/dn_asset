@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Particles/Additive4Tex"
 {
     Properties
@@ -58,7 +60,7 @@ Shader "Custom/Particles/Additive4Tex"
             v2f vert (appdata_t v)
             {
                 v2f o;
-                o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.color = v.color;
                 o.texcoord = v.texcoord;
                 return o;

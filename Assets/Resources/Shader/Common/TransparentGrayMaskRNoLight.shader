@@ -1,4 +1,6 @@
-﻿
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+
 Shader "Custom/Common/TransparentGrayMaskRNoLight" {
 Properties {
 	_MainTex ("Base (RGB)", 2D) = "white" {}
@@ -37,7 +39,7 @@ SubShader {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.texcoord = v.texcoord;
 				//fixed2 inside = step(_GrayMask.xy, o.texcoord.xy) * step(o.texcoord.xy, _GrayMask.zw);
 				//o.gray = inside.x * inside.y;

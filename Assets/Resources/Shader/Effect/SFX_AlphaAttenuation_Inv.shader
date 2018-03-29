@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/SFX_AlphaAttenuation_Inv" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
@@ -43,7 +45,7 @@ Shader "Custom/Effect/SFX_AlphaAttenuation_Inv" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = TRANSFORM_TEX(v.texcoord0, _Texture);
 				o.vertexColor = v.vertexColor*_Color.rgb*v.vertexColor.a*_Color.a;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
 

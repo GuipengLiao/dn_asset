@@ -1,4 +1,6 @@
-﻿Shader "Custom/Effect/TexScale" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Effect/TexScale" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "black" {}
 	}
@@ -31,7 +33,7 @@ Category {
 			{
 				v2f o = (v2f)0;
 
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = v.texcoord;
 				return o;
 			}

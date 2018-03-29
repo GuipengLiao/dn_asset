@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Completed works/RayTestClip" {
     Properties {
         _E01 ("E01", 2D) = "white" {}
@@ -63,7 +65,7 @@ Shader "Completed works/RayTestClip" {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.vertexColor = v.vertexColor;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
             fixed4 frag(VertexOutput i) : COLOR {

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Shader created with Shader Forge v1.26 
 // Shader Forge (c) Neat Corporation / Joachim Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
@@ -58,7 +60,7 @@ Shader "Custom/Effect/Rol" {
 				o.uv1 = lerp(half2(o.uv0.x+ _SFX_U*_Time.g, o.uv0.y), half2(o.uv0.x, o.uv0.y+ _SFX_V*_Time.g), 0.5);
 				o.uv1 = TRANSFORM_TEX(o.uv1, _SFX_Tex);
 				o.uv2 = TRANSFORM_TEX(o.uv0, _Clip_Tex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
             fixed4 frag(VertexOutput i) : COLOR 

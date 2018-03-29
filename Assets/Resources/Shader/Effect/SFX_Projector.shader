@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Effect/SFX_ProjectorTexAnim" {
     Properties {
 		_Color1("Color1", Color) = (0.5,0.5,0.5,1)
@@ -55,7 +57,7 @@ Shader "Custom/Effect/SFX_ProjectorTexAnim" {
                 o.color0.rgb = v.color.rgb*_Color1.rgb;
 				o.color0.a = v.color.a*_Color1.a*_Color2.a;
 				o.color1.rgb = v.color.rgb*_Color2.rgb;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
             fixed4 frag(VertexOutput i) : COLOR {

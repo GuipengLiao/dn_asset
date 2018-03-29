@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Custom/Scene/Skybox Cubed" {
 Properties {
 	_Tint ("Tint Color", Color) = (.5, .5, .5, .5)
@@ -44,7 +46,7 @@ SubShader {
 		{
 			v2f o;
 			float3 rotated = RotateAroundYInDegrees(v.vertex, _Rotation);
-			o.vertex = mul(UNITY_MATRIX_MVP, float4(rotated,1));
+			o.vertex = UnityObjectToClipPos(float4(rotated,1));
 
 			o.texcoord = v.texcoord;
 			return o;

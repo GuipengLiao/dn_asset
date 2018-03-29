@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "Custom/Scene/AddLightSphere" {
 Properties {
@@ -45,7 +47,7 @@ Category {
 			v2f vert (appdata_t v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				float4 WSPosition = mul(unity_ObjectToWorld, v.vertex);
 			o.N= mul(unity_ObjectToWorld, float4(v.normal,0)).xyz;
 				o.V = _WorldSpaceCameraPos.xyz - WSPosition.xyz;

@@ -1,4 +1,6 @@
-﻿Shader "Custom/Effect/RGBA" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Effect/RGBA" {
 	Properties {
 		_Color ("Tint Color", Color) = (0.0,0.0,0.0,1.0)
 	}
@@ -32,7 +34,7 @@ SubShader{
 			{
 				v2f o = (v2f)0;
 
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = v.texcoord;
 				return o;
 			}
