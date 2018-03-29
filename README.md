@@ -1,7 +1,7 @@
 
 # Unity 实现Avatar换装
 
-对应CutScene.unity
+对应fashion.unity
 
 <img src="https://huailiang.github.io/img/in-post/post-fashion/fashion1.gif">
 
